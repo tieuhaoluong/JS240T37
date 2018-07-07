@@ -1,0 +1,12 @@
+https://developers.google.com/maps/documentation/javascript/get-api-key
+
+get key
+https://console.developers.google.com
+
+
+Latitude 10.772087
+Longitude 106.651379
+
+
+Lat Long
+(10.772139, 106.651422)

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        #map {
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+
+    <script>
+        var mapDisplay = [10.772139, 106.651422];
+
+        var Home = {
+            Ten: "Nhà trọ",
+            DiaChi: "86/40 Âu Cơ, Phường 9, Quận Tân Bình.",
+            ViTri: {
+                lat: 10.772139,
+                long: 106.651422
+            }
+        }
+
+        var Store = {
+            Ten: "Đà Lạt Phố cà phê",
+            DiaChi: "86/40 Âu Cơ, Phường 9, Quận Tân Bình.",
+            ViTri: {
+                lat: 10.772055,
+                long: 106.652902
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGFADGynGNPhvmSHswBmz1QHuZFI_Yyjw&callback=KhoiTaoBanDo"
+        type="text/javascript"></script>
+
+    <script>
+        function KhoiTaoBanDo() {
+            var mapOptions = {
+                zoom: 18,
+                center: new google.maps.LatLng(Home.ViTri.lat, Home.ViTri.long),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                gestureHandling: 'cooperative', //cooperative - greedy
+            };
+
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(Home.ViTri.lat, Home.ViTri.long),
+                map: map,
+                title: "Xem chi tiết",
+                animation: google.maps.Animation.zo // BOUNCE, DROP, Eo, zo
+            })
+
+            var infowindow = new google.maps.InfoWindow({
+                content: Home.Ten + '<br/>' + Home.DiaChi
+            });
+
+            // marker.addListener('click', function () {
+            //     infowindow.open(map, marker);
+            // });
+
+            marker.addListener('mouseover', function () {
+                infowindow.open(map, marker);
+            });
+            marker.addListener('mouseout', function () {
+                infowindow.close();
+            });
+        }
+        //window.onload = KhoiTaoBanDo(10.772139, 106.651422);
+    </script>
+
+    <script>
+
+    </script>
+
+</body>
+
+</html>
