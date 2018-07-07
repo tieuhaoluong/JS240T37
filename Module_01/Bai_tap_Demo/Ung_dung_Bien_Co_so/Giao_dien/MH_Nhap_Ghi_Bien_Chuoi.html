@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Nhập ghi Dữ liệu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <img src="../Media/PET.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">MÔ HÌNH - KỸ THUẬT - CÔNG NGHỆ
+            <br>
+            <small> ĐƠN GIẢN</small>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>Nhập Ghi Dữ liệu biến chuỗi</legend>
+            Mã số cửa hàng:<input type="text" id="Th_Ma_so" size="40" /><br>
+            Tên cửa hàng:<input type="text" id="Th_Ten" size="40" /><br>
+            Địa chỉ:<input type="text" id="Th_Dia_chi" size="40" />
+            <button class="btn btn-outline-primary" id="Th_Dong_y">Đồng ý</button>
+        </fieldset>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+    <script>
+    Th_Dong_y.onclick=()=>{
+        var Ma_so=Th_Ma_so.value
+        var Ten=Th_Ten.value
+        var Dia_chi=Th_Dia_chi.value
+
+        var Hop_le = Ma_so!="" && Ten!="" && Dia_chi!=""
+        if(Hop_le){
+            var Chuoi_JSON=`{"Ten":"${Ten}","Ma_so":"${Ma_so}","Dia_chi":"${Dia_chi}"}`
+            Th_Thong_bao.innerHTML=`Dữ liệu hợp lệ`
+            var Doi_tuong_Cua_hang=JSON.parse(Chuoi_JSON)
+            //console.log(Doi_tuong_Cua_hang)
+            var Kq=Ghi_Thong_tin_Cua_hang_Moi(Doi_tuong_Cua_hang)
+            console.log(Kq)
+        }else{
+            Th_Thong_bao.innerHTML=`Dữ liệu không hợp lệ`
+        }
+
+    }
+    </script>
+</body>
+
+</html>

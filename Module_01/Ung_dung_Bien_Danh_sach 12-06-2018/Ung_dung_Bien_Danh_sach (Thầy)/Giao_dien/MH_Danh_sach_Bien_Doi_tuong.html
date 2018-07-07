@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Danh sách Điện thoại </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <img src="http://localhost:1001/PET.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">MÔ HÌNH - KỸ THUẬT - CÔNG NGHỆ
+            <br>
+            <small> ĐƠN GIẢN</small>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2 text-info">
+            <legend class="text-danger">THAO TÁC TRÊN DANH SÁCH ĐIỆN THOẠI</legend>
+
+            <button id="Th_Home" class="btn btn-outline-primary">Tất cả</button>
+            <button id="Th_Android" class="btn btn-outline-primary">Android</button>
+            <button id="Th_Iphone" class="btn btn-outline-primary">Iphone</button>
+            <hr> Nhập Giá trị tìm:
+            <input type="text" id="Th_gtTim" onkeyup="KeyCode(event)">
+            <button id="Th_Tim" class="btn btn-primary">
+                <i class="fa fa-search-plus"></i>
+            </button>
+
+            <hr>
+            <button id="Th_Sap_Tang" class="btn btn-primary" onclick="Sap_Tang()">
+                Sắp xếp theo Tên (A->Z)
+            </button>
+            <button id="Th_Sap_Giam" class="btn btn-primary" onclick="Sap_Giam()">
+                Sắp xếp theo Tên (Z->A)
+            </button>
+            <button id="Th_Sap_Tang_Gia" class="btn btn-danger" onclick="Sap_Tang_Gia()">
+                Sắp xếp theo Giá (A->Z)
+            </button>
+            <button id="Th_Sap_Giam_Gia" class="btn btn-danger" onclick="Sap_Giam_Giá()">
+                Sắp xếp theo Giá (Z->A)
+            </button>
+        </fieldset>
+
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>DANH SÁCH ĐIỆN THOẠI</legend>
+
+            <div id="Th_Danh_sach">
+
+
+
+            </div>
+        </fieldset>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+    <style>
+        .CHON {
+            background-color: red;
+            opacity: 0.5;
+
+        }
+    </style>
+    <script>
+        var Danh_sach = Doc_Danh_sach_Dien_thoai()
+        Tao_The_hien_Danh_sach(Danh_sach, Th_Danh_sach)
+        function Tao_The_hien_Danh_sach(Danh_sach, Th_Cha) {
+            Th_Cha.innerHTML = ""
+            Danh_sach.forEach((Dien_thoai, index) => {
+                var The_hien = document.createElement("div")
+                var Chuoi_HTML = `    
+                <div class="card p-2" style="width:18rem;float:left;margin:5px;">
+                    <img class="card-img-top" src="http://localhost:1001/${Dien_thoai.Ma_so}.png" style="width:15rem" alt="">
+                    <div class="card-body">
+                        <p class="card-title text-primary text-sm">${Dien_thoai.Ten}</p>
+                        <p class="card-text text-danger">${Dien_thoai.Don_gia_Ban}</p>
+                    </div>
+                </div>
+                `
+                The_hien.innerHTML = Chuoi_HTML
+                Th_Cha.appendChild(The_hien)
+                The_hien.onclick = () => {
+                    The_hien.classList.toggle("CHON")
+                    Th_Thong_bao.innerHTML = `Mã số:${Dien_thoai.Ma_so}`
+                }
+
+
+            })
+            Th_Thong_bao.innerHTML = `Danh sách Điện thoại (${Danh_sach.length})`
+        }
+        // function KeyCode(event) {
+        //     if (event.keyCode == 13) {
+        //         var gtTim = event.target.value
+        //         var Danh_sach_Loc = Danh_sach.filter(x => x.toLowerCase().includes(gtTim.toLowerCase()))
+        //         Tao_The_hien_Danh_sach(Danh_sach_Loc, Th_Danh_sach)
+        //     }
+        // }
+        // Xử lý các nút chức năng
+        Th_Home.onclick = () => {
+            Tao_The_hien_Danh_sach(Danh_sach, Th_Danh_sach)
+
+        }
+        Th_Android.onclick = () => {
+            var Danh_sach_Android = Danh_sach.filter(x => x.Nhom_Dien_thoai.Ma_so == "ANDROID")
+            Tao_The_hien_Danh_sach(Danh_sach_Android, Th_Danh_sach)
+        }
+
+        Th_Iphone.onclick = () => {
+            var Danh_sach_Android = Danh_sach.filter(x => x.Nhom_Dien_thoai.Ma_so == "IPHONE")
+            Tao_The_hien_Danh_sach(Danh_sach_Android, Th_Danh_sach)
+        }
+
+        // Th_Tim.onclick = () => {
+        //     var gtTim = Th_gtTim.value
+
+
+        //     var Hop_le = gtTim.trim() != ""
+        //     if (Hop_le) {
+        //         var Chi_so = Danh_sach.indexOf(gtTim)
+        //         var Noi_dung_Thong_bao = (Chi_so >= 0) ? `Tìm thấy ${gtTim} tại vị trí: ${Chi_so + 1}` : `Không Tìm thấy ${gtTim} trong Danh sách`
+        //         Th_Thong_bao.innerHTML = `${Noi_dung_Thong_bao}`
+
+        //         // var Kq= Danh_sach.find(x=>x==gtTim)
+        //         // if(Kq ===undefined)
+        //         // {
+        //         //     console.log("Không")
+        //         // }
+        //         // else{
+        //         //     console.log("Có")
+        //         // }
+        //         //var Kq = Danh_sach.filter(x => x.toLowerCase()==gtTim.toLowerCase())
+        //         //console.log(Kq)
+
+        //     } else {
+        //         Th_Thong_bao.innerHTML = `Dữ liệu không hợp lệ`
+        //     }
+        // }
+
+
+
+        function Sap_Tang() {
+            // Là chuỗi
+            Danh_sach.sort((a, b) => a.Ten.localeCompare(b.Ten))
+            Tao_The_hien_Danh_sach(Danh_sach, Th_Danh_sach)
+        }
+        function Sap_Giam() {
+            // Là chuỗi
+            Danh_sach.sort((a, b) => b.Ten.localeCompare(a.Ten))
+            Tao_The_hien_Danh_sach(Danh_sach, Th_Danh_sach)
+        }
+        function Sap_Tang_Gia() {
+            // Là số
+            Danh_sach.sort((a,b)=>{
+                return parseInt(a.Don_gia_Ban)-parseInt(b.Don_gia_Ban)
+            })
+            Tao_The_hien_Danh_sach(Danh_sach, Th_Danh_sach)
+
+        }
+        function Sap_Giam_Giá() {
+            // Là số
+            Danh_sach.sort((a,b)=>{
+                return parseInt(b.Don_gia_Ban)-parseInt(a.Don_gia_Ban) 
+            })
+            Tao_The_hien_Danh_sach(Danh_sach, Th_Danh_sach)
+        }
+
+
+    </script>
+</body>
+
+</html>

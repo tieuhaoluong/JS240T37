@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                <h2>Module 1 - Bài 1 - Bài tập về nhà</h2>
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-toggle="tab" data-target="#bt1">Bài tập 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="tab" data-target="#bt2">Bài tập 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="tab" data-target="#bt3">Bài tập 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="tab" data-target="#bt4">Bài tập 4</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <div id="bt1" class="card-body tab-pane fade active show">
+                    <h3 class="text-left">Tính tổng hai số A và B:</h3>
+                    <br/> Tổng
+                    <input id="txtSoA" class="text-right" placeholder="A"> +
+                    <input id="txtSoB" class="text-left" placeholder="B">
+                    <button id="btnBT1">=</button>
+                    <strong>
+                        <label id="txtKQBT1"></label>
+                    </strong>
+                </div>
+
+                <div id="bt2" class="card-body tab-pane fade">
+                    <h3 class="text-left">Tính điểm trung bình, xét loại học tập, kết quả của 1 học sinh từ điểm HK1, HK2:</h3>
+                    <br/> Điểm HK 1:
+                    <input id="txtDiemHK1" class="text-right" placeholder="Điểm học kỳ 1"><br/>
+                    <br/> Điểm HK 2:
+                    <input id="txtDiemHK2" class="text-right" placeholder="Điểm học kỳ 2"><br/>
+                    <br/>
+                    <button id="btnBT2">Tính điểm</button>
+                    <p id="txtKQBT2" class="card-text"></p>
+                </div>
+
+                <div id="bt3" class="card-body tab-pane fade">
+                    <h3 class="text-left">Nhập năm dương lịch, tính năm âm lịch:</h3>
+                    <br/> Năm dương lịch:
+                    <input id="txtNamDuongLich" class="text-right" placeholder="Nhập năm dương lịch" maxlength="4">
+                    <br/>
+                    <br/>
+                    <button id="btnBT3">Tính năm</button>
+                    <p id="txtKQBT3" class="card-text"></p>
+                </div>
+
+                <div id="bt4" class="card-body tab-pane fade">
+                        <h3 class="text-left">Nhập một số, in bảng cửu chương:</h3>
+                        <br/> Bảng cửu chương:
+                        <input id="txtBangCuuChuong" class="text-right" placeholder="" maxlength="1">
+                        <br/>
+                        <br/>
+                        <button id="btnBT4">Tra bảng cửu chương</button>
+                        <p id="txtKQBT4" class="card-text"></p>
+                    </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+        btnBT1.onclick = () => {
+            if (txtSoA.value * 1 && txtSoB.value * 1) {
+                txtKQBT1.innerText = txtSoA.value * 1 + txtSoB.value * 1;
+            } else {
+                alert(`Giá trị nhập vào phải là số!`);
+            }
+        }
+    </script>
+
+    <script>
+        btnBT2.onclick = () => {
+            if (txtDiemHK1.value * 1 && txtDiemHK2.value * 1) {
+                if (txtDiemHK1.value * 1 < 0 || txtDiemHK1.value > 10 || txtDiemHK2.value * 1 < 0 || txtDiemHK2.value > 10) {
+                    alert("Điểm học kỳ phải từ 0 đến 10");
+                    return;
+                }
+                var dtb = (txtDiemHK1.value * 1 + txtDiemHK2.value * 2) / 3;
+                var loai;
+                if (dtb < 5)
+                    loai = "Yếu";
+                else if (dtb <= 6.5)
+                    loai = "Trung bình";
+                else if (dtb < 8)
+                    loai = "Khá";
+                else
+                    loai = "Giỏi";
+                txtKQBT2.innerHTML = `Điểm trung bình: <strong>${dtb.toFixed(1)}</strong><br/>Xếp loại: <strong>${loai}</strong>`;
+            } else {
+                alert(`Giá trị nhập vào phải là số!`);
+            }
+        }
+    </script>
+
+    <script>
+        var Can = ['Thân', 'Dậu', 'Tuất', 'Hợi', 'Tý', 'Sửu', 'Dần', 'Mão', 'Thìn', 'Tỵ', 'Ngọ', 'Mùi'];
+        var Chi = ['Canh', 'Tân', 'Nhâm', 'Quý', 'Giáp', 'Ất', 'Bính', 'Đinh', 'Mậu', 'Kỷ'];
+        btnBT3.onclick = () => {
+            if (txtNamDuongLich.value * 1 > 0) {
+                var nam = txtNamDuongLich.value * 1;
+                txtKQBT3.innerHTML = `Năm Âm Lịch: <strong>${Chi[nam % 10]} ${Can[nam % 12]}</strong>`;
+            }else{
+                alert(`Giá trị nhập vào phải từ 1 đến 9999!`);
+            }
+
+        }
+    </script>
+
+    <script>
+        btnBT4.onclick = () => {
+            if (txtBangCuuChuong.value * 1 > 0 && txtBangCuuChuong.value*1 <= 9) {
+                var bcc = txtBangCuuChuong.value * 1;
+                txtKQBT4.innerHTML = `Bảng cửu chương <strong>${bcc}</strong>`;
+                for (var i = 1; i <= 10; i++) {
+                    txtKQBT4.innerHTML += `<br/>${bcc} x ${i} = ${bcc*i}`;
+                }
+                
+            }else{
+                alert(`Giá trị nhập vào phải từ 1 đến 9!`);
+            }
+
+        }
+    </script>
+</body>
+
+</html>

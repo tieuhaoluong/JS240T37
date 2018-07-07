@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Đọc xuất Dữ liệu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    hr {
+        border: 1px solid black
+    }
+
+    .gach_chan {
+        border-bottom: 1px solid gray;
+        padding-bottom: 2px;
+        color: navy;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div class="container-fluid">
+        <img src="../Media/PET.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">MÔ HÌNH - KỸ THUẬT - CÔNG NGHỆ
+            <br>
+            <small> ĐƠN GIẢN</small>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>Đọc Xuất Dữ liệu biến Ngày </legend>
+            Ngày làm việc:
+            <div class="gach_chan" id="Th_Ngay_Hien_hanh"></div>
+            <br> Điện thoại:
+            <div class="gach_chan" id="Th_Ten"></div>
+            <br> Mã số:
+            <div class="gach_chan" id="Th_Ma_so"></div>
+            <br> Tình trạng:
+            <div class="gach_chan" id="Th_Tinh_trang"></div>
+            <br> Ngày Giao hàng
+            <div class="gach_chan" id="Th_Ngay_Giao_hang"></div>
+            <br>
+            <button class="btn btn-outline-primary" id="Th_Dong_y">Đồng ý</button>
+        </fieldset>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+    <script>
+        var Ngay_Hien_hanh = new Date()
+        var Chuoi_Ngay = `${Ngay_Hien_hanh.getDate().toString()}/${Ngay_Hien_hanh.getMonth() + 1}/${Ngay_Hien_hanh.getFullYear()}`
+        Th_Ngay_Hien_hanh.innerHTML = Chuoi_Ngay.toString()
+        Th_Dong_y.onclick = () => {
+            var Dien_thoai = Doc_Du_lieu_Dien_thoai();
+            if (Dien_thoai != "") {
+                var Ten = Dien_thoai.Thong_tin_Dien_thoai.Ten
+                var Ma_so = Dien_thoai.Thong_tin_Dien_thoai.Ma_so
+                var Tinh_trang = Boolean(Dien_thoai.Thong_tin_Dien_thoai.Trang_thai) ? "Còn hàng" : "Hết hàng"
+                var Ngay_Giao_hang = Dien_thoai.Thong_tin_Dien_thoai.Ngay_Giao_hang
+                Th_Ten.innerHTML = Ten.toString()
+                Th_Ma_so.innerHTML = Ma_so.toString()
+                Th_Tinh_trang.innerHTML = Tinh_trang.toString()
+                var Hop_le = Kiem_tra_Ngay(Ngay_Giao_hang)
+                Th_Ngay_Giao_hang.innerHTML = Hop_le ? Ngay_Giao_hang.toString() : Chuoi_Ngay.toString()
+                Th_Thong_bao.innerHTML = "Đọc dữ liệu thành công"
+
+            }
+            else {
+                Th_Thong_bao.innerHTML = "Lỗi đọc dữ liệu"
+            }
+        }
+    </script>
+</body>
+
+</html>
