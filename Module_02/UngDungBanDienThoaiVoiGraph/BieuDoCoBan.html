@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Title</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="card">
+			<div id="Th_BD_1" class="card-body">
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="card">
+			<div id="Th_BD_2" class="card-body">
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="card">
+			<div id="Th_BD_3" class="card-body">
+			</div>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+	<script src="/xuly.js"></script>
+	<script src="/Xu_ly_3L.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	 crossorigin="anonymous"></script>
+
+	<script>
+		//var dienthoai = Doc_Danh_sach_Dien_thoai();
+
+		var categories_1 = ['Iphone', 'Samsung', 'Sony', 'Xiaomi', 'HTC', 'Khác']
+		var series_1 = [{
+			name: 'Linh Đan',
+			data: [5, 25, 4, 8, 1, 7],
+			color: 'orange'
+		}]
+
+		var categories_2 = ['Iphone', 'Samsung', 'Sony', 'Xiaomi', 'HTC', 'Khác']
+		var Nhap = {
+			name: 'Nhập',
+			data: [50, 40, 80, 60, 10, 60],
+			color: '#6f42c1',
+		}
+		var Xuat = {
+			name: 'Xuất',
+			data: [12, 4, 18, 29, 2, 40],
+			color: '#28a745',
+		}
+		var Ton = {
+			name: 'Tồn',
+			data: [],
+			color: 'red',
+		}
+
+		for (let i = 0; i < Nhap.data.length; i++) {
+			Ton.data[i] = (Nhap.data[i] - Xuat.data[i])
+		}
+
+		var series_2 = [Xuat, Ton];
+
+		var categories_3 = ['Iphone', 'Samsung', 'Sony', 'Xiaomi', 'HTC', 'Khác']
+		var dgNhap = [16000000, 12000000, 8500000, 11300000, 7900000, 3200000]
+		var dgXuat = [19000000, 14000000, 9600000, 14000000, 8500000, 4000000]
+
+		var doanhthu = {
+			name: 'Doanh thu',
+			data: [],
+			color: 'red',
+		}
+		for (let i = 0; i < Xuat.data.length; i++) {
+			doanhthu.data[i] = Xuat.data[i] * dgXuat[i] - Xuat.data[i] * dgNhap[i]
+			//Ton.data[i] = (Nhap.data[i] - Xuat.data[i])
+		}
+		var series_3 = [doanhthu];
+
+		Highcharts.setOptions({
+			lang: {
+				numericSymbols: [' Ngàn', ' Triệu', 'Tỷ'],
+				numericSymbolMagnitude: 100000000000,
+				decimalPoint: ',',
+				thousandsSep: '.'
+			},
+			chart: {
+				style: {
+					fontFamily: 'tahoma',
+					fontSize: 14
+				}
+			}
+		});
+		CreateChart(Th_BD_1, ChartType.Column, "Biểu đồ Bán điện thoại", "Đơn vị tính: cái", categories_1, "Số lượng", series_1);
+		CreateChart(Th_BD_2, ChartType.Column, "Tình hình nhập xuất điện thoại", "Đơn vị tính: cái", categories_2, "Số lượng", series_2);
+		Highcharts.setOptions({
+			lang: {
+				numericSymbols: [' Ngàn', ' Triệu', 'Tỷ'],
+				numericSymbolMagnitude: 100000000000,
+				decimalPoint: ',',
+				thousandsSep: '.'
+			},
+			chart: {
+				style: {
+					fontFamily: 'tahoma',
+					fontSize: 14
+				}
+			}
+		});
+		CreateChart(Th_BD_3, ChartType.Column, "Thống kê doanh thu điện thoại", "Đơn vị tính: đồng", categories_3, "Doanh thu", series_3);
+		Highcharts.setOptions({
+			lang: {
+				numericSymbols: [' Ngàn', ' Triệu', 'Tỷ'],
+				numericSymbolMagnitude: 100000000000,
+				decimalPoint: ',',
+				thousandsSep: '.'
+			},
+			chart: {
+				style: {
+					fontFamily: 'tahoma',
+					fontSize: 14
+				}
+			}
+		});
+		// Highcharts.chart('Th_Bieu_do', {
+		// 	chart: {
+		// 		type: 'column', // bar , column, line, pie
+		// 		plotBorderWidth: 1
+		// 	},
+		// 	legend: {
+		// 		align: 'right',
+		// 		verticalAlign: 'top',
+		// 		layout: 'vertical',
+		// 		// x: 0,
+		// 		y: 60
+		// 	},
+		// 	title: {
+		// 		text: 'Title',
+		// 		// align: 'left',
+		// 		// style: {
+		// 		// 	color: 'red',
+		// 		// 	fontWeight: 'bold',
+		// 		// 	fontSize: '3rem'
+		// 		// },
+		// 		// x: 50
+		// 	},
+		// 	subtitle: {
+		// 		text: 'subtitle'
+		// 	},
+		// 	xAxis: {
+		// 		categories: mycategories
+		// 	},
+		// 	yAxis: {
+		// 		title: {
+		// 			text: 'yAxis',
+		// 			style: {
+		// 				color: 'blue',
+		// 				fontWeight: 'bold',
+		// 				fontSize: '1rem'
+		// 			}
+
+		// 		}
+		// 	},
+		// 	series: myseries,
+
+		// 	tooltip: {
+		// 		backgroundColor: '#FCFFC5',
+		// 		borderColor: 'black',
+		// 		borderRadius: 10,
+		// 		borderWidth: 3,
+		// 		formatter: function () {
+		// 			return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series ' + this.series.name;
+		// 		},
+		// 		crosshairs: [true]
+
+		// 	}
+
+		// });
+	</script>
+</body>
+
+</html>
