@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Vu Dinh AI",
+    "address":"CSC",
+    "bod": 1980,
+    "gender": true,
+    "result": {
+      "gpa": 5.5,
+      "type": "medium"
+    },
+    "phone": [
+      {"home":"0999"},
+      {"mobile":"090909"}
+    ]
+  },
+  {
+    "name": "Vu Dinh AI",
+    "address":"Huflit",
+    "bod": 1980,
+    "gender": true,
+    "result": {
+      "gpa": 5.5,
+      "type": "medium"
+    },
+    "phone": [
+      {"home":"0999"},
+      {"mobile":"090909"}
+    ]
+  },
+  {
+    "name": "Vu Dinh AI",
+    "address":"HCM",
+    "bod": 1980,
+    "gender": true,
+    "result": {
+      "gpa": 5.5,
+      "type": "medium"
+    },
+    "phone": [
+      {"home":"0999"},
+      {"mobile":"090909"}
+    ]
+  }
+]
